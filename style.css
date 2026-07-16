@@ -113,6 +113,9 @@ header {
         flex-direction: column;
         gap: 15px;
     }
+    .top-wrapper {
+        flex-direction: column;
+    }
     .container {
         flex-direction: column;
     }
