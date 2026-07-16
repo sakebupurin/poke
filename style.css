@@ -11,20 +11,20 @@ li {
 }
 
 header {
-    height:80px;
-    width:100%;
     background-color:rgb(228, 226, 237);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .header-left {
-    float: left;
     padding:0 25px;
     
 }
 
 .header-right {
-    float: right;
-    padding: 25px;
+    display: flex;
+    gap: 25px;
     
 }
 
