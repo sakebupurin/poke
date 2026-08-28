@@ -9,13 +9,25 @@
 <body id="poke-body">
     <header class="header">
         <div class = "header-left">
-            <h2>好きなポケモン</h2>
+            <h2>ポケモンたち</h2>
         </div>
         <div class = "header-right">
-            <a href="index.html">ホーム</a>
-            <a href="list.html">ポケモン記事</a>
+            <button type="button" id="js-hamburger" class="hamburger" aria-label="メニューを開く">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav id="js-nav" class="nav">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="index.html">ホーム</a></li>
+                    <li class="nav__item"><a href="list.html">ポケモン記事</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
+    <div class = "top-wrapper">
+        <h1 id="title">自分の好きなポケモン</h1>
+    </div>
     <div id="poke-container" class = "container">
         <div class = "main-wrapper">
             <h2 class = "name-title"># 相棒</h2>
@@ -47,6 +59,25 @@
                 <p id="counter">ボタンを押した回数：0回</p>
                 <button id="reset-btn">リセット</button>
             </div>
+            <ul class="accordion">
+                <li>
+                    <div class="accordion-q">
+                        <button class="accordion-btn">
+                            <span class="accordion-q-prefix">Q.</span>
+                            <span class="accordion-q-content">ポケットモンスター 56話のシルエットクイズで出題された丸い形のポケモンは？</span>
+                            <span class="accordion-q-icon"></span>
+                        </button>
+                    </div>
+                    <div class="accordion-a">
+                        <div class="accordion-a-inner">
+                            <div class="accordion-a-prefix">A.</div>
+                            <div class="accordion-a-content">
+                                <p>上から見たプリン</p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
     <footer id ="poke-footer">
@@ -56,6 +87,9 @@
              □[ | _ | ]□
         </div>
     </footer>
+    <button id="back-to-top" class="back-to-top" aria-label="ページトップへ戻る">
+        ↑
+    </button>
     <script src="main.js"></script>
 </body>
 </html>

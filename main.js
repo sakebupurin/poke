@@ -134,3 +134,47 @@ function revealText() {
   const message = document.getElementById('secretText');
   message.classList.add('show');
 }
+
+
+// 上に戻るボタン
+const backToTopBtn = document.getElementById('back-to-top');
+
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 300) {
+    backToTopBtn.classList.add('is-active');
+  } else {
+    backToTopBtn.classList.remove('is-active');
+  }
+});
+
+
+backToTopBtn.addEventListener('click', () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+});
+
+
+
+
+// 要素を取得
+const hamburger = document.getElementById('js-hamburger');
+const nav = document.getElementById('js-nav');
+
+// ボタンクリック時の処理
+hamburger.addEventListener('click', () => {
+  // .is-active クラスが無ければ追加、あれば削除する
+  hamburger.classList.toggle('is-active');
+  nav.classList.toggle('is-active');
+});
+
+// （おまけ）メニュー内のリンクを押したら自動でメニューを閉じる処理
+const navLinks = document.querySelectorAll('.nav__item a');
+navLinks.forEach((link) => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('is-active');
+    nav.classList.remove('is-active');
+  });
+});

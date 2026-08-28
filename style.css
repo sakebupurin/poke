@@ -15,18 +15,107 @@ li {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    opacity: 0.8;
+}
+
+.header.is-active {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 影をつける */
 }
 
 .header-left {
-    padding:0 25px;
+  padding:0 25px;
     
 }
 
 
-.header-right {
-    display: flex;
-    gap: 25px;
+/*.header-right {
+  display: flex;
+  gap: 25px;
     
+}*/
+
+
+
+/* --- ハンバーガーボタン --- */
+.hamburger {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 100; /* メニューより手前に表示 */
+  width: 48px;
+  height: 48px;
+  background: #333;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  opacity: 0.8;
+}
+
+/* 三本線の共通スタイル */
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: #fff;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+/* 開いた時（.is-active）のバツ印化 */
+.hamburger.is-active span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.hamburger.is-active span:nth-child(2) {
+  opacity: 0; /* 真ん中の線を消す */
+}
+.hamburger.is-active span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* --- ナビゲーションメニュー --- */
+.nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 90;
+  width: 300px; /* 幅を固定 */
+  transform: translateX(100%); /* 300px分右へ隠れる */
+  
+
+  
+  /* スライド動作の滑らかさを指定（0.3秒かけて動く） */
+  transition: transform 0.3s ease-in-out;
+}
+
+/* 開いた時（.is-active）の表示状態 */
+.nav.is-active {
+  /* 元の位置（画面内）へ戻す */
+  transform: translateX(0);
+}
+
+.nav__list {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+}
+
+.nav__item a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 20px;
+  display: block;
+  padding: 15px;
 }
 
 
@@ -197,6 +286,32 @@ footer {
     display: flex;
     background-color:antiquewhite;
     align-items: center;
+}
+
+
+/* 上に戻るボタンの基本スタイル */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #333333;
+  color: #ffffff;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+/* スクロールされた時にJavaScriptで付与するクラス */
+.back-to-top.is-active {
+  opacity: 1;
+  visibility: visible;
 }
 
 /* 隠しボタン */
