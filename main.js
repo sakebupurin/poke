@@ -165,12 +165,11 @@ const nav = document.getElementById('js-nav');
 
 // ボタンクリック時の処理
 hamburger.addEventListener('click', () => {
-  // .is-active クラスが無ければ追加、あれば削除する
   hamburger.classList.toggle('is-active');
   nav.classList.toggle('is-active');
 });
 
-// （おまけ）メニュー内のリンクを押したら自動でメニューを閉じる処理
+// メニュー内のリンクを押したら自動でメニューを閉じる処理
 const navLinks = document.querySelectorAll('.nav__item a');
 navLinks.forEach((link) => {
   link.addEventListener('click', () => {
