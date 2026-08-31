@@ -22,7 +22,7 @@ li {
 }
 
 .header.is-active {
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 影をつける */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .header-left {
@@ -44,7 +44,7 @@ li {
   position: fixed;
   top: 20px;
   right: 20px;
-  z-index: 100; /* メニューより手前に表示 */
+  z-index: 100;
   width: 48px;
   height: 48px;
   background: #333;
@@ -72,7 +72,7 @@ li {
   transform: translateY(8px) rotate(45deg);
 }
 .hamburger.is-active span:nth-child(2) {
-  opacity: 0; /* 真ん中の線を消す */
+  opacity: 0; 
 }
 .hamburger.is-active span:nth-child(3) {
   transform: translateY(-8px) rotate(-45deg);
@@ -89,8 +89,8 @@ li {
   justify-content: center;
   align-items: center;
   z-index: 90;
-  width: 300px; /* 幅を固定 */
-  transform: translateX(100%); /* 300px分右へ隠れる */
+  width: 300px;
+  transform: translateX(100%);
   
 
   
@@ -98,9 +98,8 @@ li {
   transition: transform 0.3s ease-in-out;
 }
 
-/* 開いた時（.is-active）の表示状態 */
+/* 開いた時の表示状態 */
 .nav.is-active {
-  /* 元の位置（画面内）へ戻す */
   transform: translateX(0);
 }
 
@@ -180,6 +179,18 @@ li {
     width:150px;
     height: auto;
     
+}
+
+#shiny-btn {
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#reset-btn {
+  padding: 3px 6px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .name-title {
