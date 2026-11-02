@@ -42,10 +42,10 @@ btn.addEventListener('click', () => {
 });
 
 reset.addEventListener('click', () => {
-    count = 0;
-    resultText.innerText = 'ボタンを押すと確率で色が変わります\n（1/20 銀, 1/25 紫, 1/500 黄, 1/4096 緑, 1/8192 赤, それ以外 青）';
-    counterText.textContent = `ボタンを押した回数：${count}回`;
-    body.style.backgroundColor = 'white';
+  count = 0;
+  resultText.innerText = 'ボタンを押すと確率で色が変わります\n ※ダークモード中は文字が見えづらくなります\n（1/20 銀, 1/25 紫, 1/500 黄, 1/4096 緑, 1/8192 赤, それ以外 青）';
+  counterText.textContent = `ボタンを押した回数：${count}回`;
+  body.style.backgroundColor = '';
 });
 
 //アニメーション
@@ -176,4 +176,38 @@ navLinks.forEach((link) => {
     hamburger.classList.remove('is-active');
     nav.classList.remove('is-active');
   });
+});
+
+// ダークモードボタン
+const themeToggleButton = document.getElementById('theme-toggle');
+
+themeToggleButton.addEventListener('click', () => {
+  document.documentElement.classList.toggle('dark-mode');
+
+  if (document.documentElement.classList.contains('dark-mode')) {
+    document.body.style.backgroundColor = '';
+    localStorage.setItem('theme', 'dark');
+  } else {
+    localStorage.setItem('theme', 'light');
+  }
+});
+
+// 左右切替ボタン
+
+const layoutToggleButton = document.getElementById('layout-toggle');
+const containerElement = document.querySelector('.container');
+const savedLayout = localStorage.getItem('layout');
+
+if (savedLayout === 'reverse') {
+  containerElement.classList.add('layout-reverse');
+}
+
+layoutToggleButton.addEventListener('click', () => {
+  containerElement.classList.toggle('layout-reverse');
+
+  if (containerElement.classList.contains('layout-reverse')) {
+    localStorage.setItem('layout', 'reverse');
+  } else {
+    localStorage.setItem('layout', 'normal');
+  }
 });

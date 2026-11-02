@@ -2,23 +2,36 @@
     font-family:"Meiryo";
 }
 
+:root {
+  --bg-color: #ffffff;
+  --text-color: #333333;
+}
+
+html.dark-mode {
+  --bg-color: #1a1a1a;
+  --text-color: #f0f0f0;
+}
+
 body {
-    margin:0;
+  margin:0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
 }
 
 li {
-    list-style: none;
+  list-style: none;
 }
 
 .header {
-    background-color:rgb(187, 184, 198);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    opacity: 0.8;
+  background-color:rgb(187, 184, 198);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  opacity: 0.8;
 }
 
 .header.is-active {
@@ -60,7 +73,7 @@ li {
   transition: transform 0.3s, opacity 0.3s;
 }
 
-/* 開いた時（.is-active）のバツ印化 */
+/* 開いた時のバツ印化 */
 .hamburger.is-active span:nth-child(1) {
   transform: translateY(8px) rotate(45deg);
 }
@@ -125,10 +138,15 @@ li {
 }
 
 .container {
-    max-width: 1100px;
-    margin: 40px auto;
-    display: flex;
-    gap: 40px;
+  max-width: 1100px;
+  margin: 40px auto;
+  display: flex;
+  gap: 40px;
+  flex-direction: row;
+}
+
+.container.layout-reverse {
+  flex-direction: row-reverse;
 }
 
 .main-wrapper {
@@ -172,6 +190,22 @@ li {
     width:150px;
     height: auto;
     
+}
+
+#theme-toggle {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#layout-toggle {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
 #shiny-btn {
@@ -293,7 +327,7 @@ footer {
 }
 
 
-/* 上に戻るボタンの基本スタイル */
+/* 上に戻るボタンのスタイル */
 .back-to-top {
   position: fixed;
   bottom: 30px;
@@ -483,5 +517,16 @@ footer {
 @media screen and (max-width: 767px) {
   .accordion-a-content p + p {
     margin-top: 20px;
+  }
+}
+
+/* 切替ボタン */
+
+@media (max-width: 768px) {
+  #layout-toggle {
+    display: none;
+  }
+  .container {
+    flex-direction: column !important;
   }
 }
