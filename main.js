@@ -35,9 +35,11 @@ btn.addEventListener('click', () => {
     if (hit) {
         resultText.textContent = hit.text;
         body.style.backgroundColor = hit.color;
+        body.style.color ='black';
     } else {
         resultText.textContent = '[通常色]ポケモンが現れた！';
         body.style.backgroundColor = 'aliceblue';
+        body.style.color = 'black';
     }
 });
 
@@ -46,6 +48,7 @@ reset.addEventListener('click', () => {
   resultText.innerText = 'ボタンを押すと確率で色が変わります\n ※ダークモード中は文字が見えづらくなります\n（1/20 銀, 1/25 紫, 1/500 黄, 1/4096 緑, 1/8192 赤, それ以外 青）';
   counterText.textContent = `ボタンを押した回数：${count}回`;
   body.style.backgroundColor = '';
+  body.style.color = '';
 });
 
 //アニメーション
