@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>進化先</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        const savedTheme = localStorage.getItem('theme')
+        if (savedTheme === 'dark') {
+            document.documentElement.classList.add('dark-mode');
+        }
+    </script>
+    <style>
+        .evolution-container {
+            flex: 2;
+        }
+
+        :root {
+            --pokedex-bg: #ffffff;
+            --pokedex-text: #222222;
+            --pokedex-border: #1d3557;
+            --pokedex-accent: #e63946;
+        }
+
+        body.dark-mode {
+            --pokedex-bg: #151b22;
+            --pokedex-text: #f0f6fc;
+            --pokedex-border: #30363d;
+            --pokedex-accent: #ff4d5a;
+        }
+
+        .input-group label {
+            margin-bottom: 6px;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .input-group select {
+            width: 25%;
+        }
+
+        .pokedex-window {
+            background-color: var(--pokedex-bg);
+            color: var(--pokedex-text);
+            border: 4px solid var(--pokedex-border);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            max-width: 450px;
+            margin: 20px auto;
+            position: relative;
+        }
+
+        .pokedex-window::before {
+            content: "";
+            display: block;
+            height: 6px;
+            background-color: var(--pokedex-accent);
+            border-radius: 3px;
+            margin-bottom: 16px;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1.0);
+            }
+        }
+
+        .animate-result {
+            animation: fadeIn 0.4s ease;
+        }
+    </style>
+</head>
+<body id="poke-body">
+    <header class="header">
+        <div class = "header-left">
+            <a href="index.html"><h2>ポケモンたち</h2></a>
+        </div>
+        <div class = "header-right">
+            <button type="button" id="js-hamburger" class="hamburger" aria-label="メニューを開く">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav id="js-nav" class="nav">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="index.html">ホーム</a></li>
+                    <li class="nav__item"><a href="list.html">ポケモン記事</a></li>
+                    <li class="nav__item"><a href="type.html">タイプ相性</a></li>
+                    <li class="nav__item"><a href="gameStorage.html">ゲーム倉庫</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class = "top-wrapper">
+        <h1 id="title">好きなポケモン</h1>
+    </div>
+    <div id="poke-container" class = "container">
+        <div class = "evolution-container">
+            <h2 class = "name-title"># 進化先</h2>
+            <div class = "input-group">
+                <p>一覧からポケモンを選ぶと進化先と方法がわかります。</p>
+                <label for="pokemon-select">ポケモンを選ぶ：</label>
+                <select id="pokemon-select">
+                    <option value="bulbasaur">フシギダネ</option>
+                    <option value="ivysaur">フシギソウ</option>
+                    <option value="venusaur">フシギバナ</option>
+                    <option value="charmander">ヒトカゲ</option>
+                    <option value="charmeleon">リザード</option>
+                    <option value="charizard">リザードン</option>
+                    <option value="squirtle">ゼニガメ</option>
+                    <option value="wartortle">カメール</option>
+                    <option value="blastoise">カメックス</option>
+                </select>
+                <button id="search-evo-btn">しらべる</button>
+            </div>
+            <div class="pokedex-window">
+                <p id="evo-result-name">しんかさき： まだえらばれていません</p>
+                <p id="evo-result-method">しんかほうほう： ー</p>
+            </div>
+        </div>
+        <div class = "poke-side-menu">
+            <div class = "profile-card">
+                <h2 class = "name-title">管理人</h2>
+                <img src="jibunpurin.png">
+                <h3>イケダ</h3>
+                <p>ポケモンが好きです。日々癒されています。</p>
+            </div>
+            <button id="theme-toggle">ダークモード切替</button>
+            <button id="layout-toggle">レイアウト切替</button>
+            <div class = "profile-card">
+                <h2 class = "name-title">カテゴリ</h2>
+                <ul class = "category-list">
+                    <li><a href="buddy.html"># 相棒</a></li>
+                    <li><a href="batle.html"># 対戦</a></li>
+                    <li><a href="type.html"># タイプ相性</a></li>
+                    <li><a href="evolution.html"># 進化先</a></li>
+                    <li><a href="gameStorage.html"># ゲーム倉庫</a></li>
+                </ul>
+            </div>
+            <div class="poke-btn">
+                <button id="shiny-btn">色違いチャレンジ！</button>
+                <p id="display-result">ボタンを押すと確率で色が変わります<br>（1/20 銀, 1/25 紫, 1/500 黄, 1/4096 緑, 1/8192 赤, それ以外 青）</p>
+                <p id="counter">ボタンを押した回数：0回</p>
+                <button id="reset-btn">リセット</button>
+            </div>
+            <ul class="accordion">
+                <li>
+                    <div class="accordion-q">
+                        <button class="accordion-btn">
+                            <span class="accordion-q-prefix">Q.</span>
+                            <span class="accordion-q-content">プリンの英語名は？</span>
+                            <span class="accordion-q-icon"></span>
+                        </button>
+                    </div>
+                    <div class="accordion-a">
+                        <div class="accordion-a-inner">
+                            <div class="accordion-a-prefix">A.</div>
+                            <div class="accordion-a-content">
+                                <p>Jigglypuff（ジグリーパフ）</p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <footer id ="poke-footer">
+        <button class="secret-btn" onclick="revealText()">★</button>
+        <div id="secretText" class="hidden-message">
+            □　　　　□<br>
+             □[ | _ | ]□
+        </div>
+    </footer>
+    <button id="back-to-top" class="back-to-top" aria-label="ページトップへ戻る">
+        ↑
+    </button>
+    <script src="main.js"></script>
+    <script>
+        const pokemonSelect = document.getElementById('pokemon-select');
+        const searchButton = document.getElementById('search-evo-btn');
+        const resultName = document.getElementById('evo-result-name');
+        const resultMethod = document.getElementById('evo-result-method');
+        const pokedexWindow = document.querySelector(".pokedex-window");
+
+        const evolutionData = {
+            bulbasaur: {
+                name: 'フシギソウ',
+                method: 'レベル１６で進化'
+            },
+
+            ivysaur: {
+                name: 'フシギバナ',
+                method: 'レベル３２で進化'
+            },
+
+            charmander: {
+                name: 'リザード',
+                method: 'レベル１６で進化'
+            },
+
+            charmeleon: {
+                name: 'リザードン',
+                method: 'レベル３６で進化'
+            },
+
+            squirtle: {
+                name: 'カメール',
+                method: 'レベル１６で進化'
+            },
+
+            wartortle: {
+                name: 'カメックス',
+                method: 'レベル３６で進化'
+            }
+        };
+
+        function resultDisplay(nameMessage, methodMessage) {
+            pokedexWindow.classList.remove('animate-result');
+
+            resultName.textContent = `しんかさき： ${nameMessage}`;
+            resultMethod.textContent = `しんかほうほう： ${methodMessage}`;
+
+            setTimeout(() => {
+                pokedexWindow.classList.add('animate-result');
+            }, 10);
+        }
+
+        searchButton.addEventListener('click', () => {
+            const selectedKey = pokemonSelect.value;
+            const pokeData = evolutionData[selectedKey];
+
+            if (!pokeData) {
+                resultDisplay("なし", "なし");
+            } else {
+                resultDisplay(pokeData.name, pokeData.method);
+            }
+        });
+    </script>
+</body>
+</html>
